@@ -8,10 +8,10 @@ export async function GET() {
     await client.sql`COMMIT`;
 
     return new Response(JSON.stringify({ message: 'Database seeded successfully' }), {
+      status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (error) {
-    // Ensure `error` is an instance of `Error`
+  } catch (error: unknown) {
     if (error instanceof Error) {
       await client.sql`ROLLBACK`;
       return new Response(JSON.stringify({ error: error.message }), {
@@ -19,7 +19,6 @@ export async function GET() {
         headers: { 'Content-Type': 'application/json' },
       });
     } else {
-      // Handle unknown error types
       await client.sql`ROLLBACK`;
       return new Response(JSON.stringify({ error: 'Unknown error occurred' }), {
         status: 500,
