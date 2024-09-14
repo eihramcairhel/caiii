@@ -11,7 +11,7 @@ export async function GET() {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    // Type guard to ensure `error` is an instance of `Error`
+    // Ensure `error` is an instance of `Error`
     if (error instanceof Error) {
       await client.sql`ROLLBACK`;
       return new Response(JSON.stringify({ error: error.message }), {
@@ -19,7 +19,7 @@ export async function GET() {
         headers: { 'Content-Type': 'application/json' },
       });
     } else {
-      // Fallback for unknown error types
+      // Handle unknown error types
       await client.sql`ROLLBACK`;
       return new Response(JSON.stringify({ error: 'Unknown error occurred' }), {
         status: 500,
