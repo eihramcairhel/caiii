@@ -19,11 +19,9 @@ export default async function RevenueChart() {
         <div className="mt-4">
           {/* Render your chart here using the data */}
           {/* Example chart rendering logic */}
-          {/* You will need to replace this with your actual chart component and logic */}
-          {/* <Chart data={revenue} height={chartHeight} yAxisLabels={yAxisLabels} topLabel={topLabel} /> */}
+          {/* Replace this with your actual chart component and logic */}
           <div style={{ height: chartHeight, background: '#f0f0f0' }}>
             {/* Placeholder for the actual chart */}
-            {/* Replace this with the actual chart rendering logic */}
             <p className="text-center text-gray-600">Chart Placeholder</p>
           </div>
         </div>
