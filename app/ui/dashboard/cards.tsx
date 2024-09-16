@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { BanknotesIcon, ClockIcon, UserGroupIcon, InboxIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchCardData } from '@/app/lib/data'; // Import the fetchCardData function
@@ -16,7 +15,7 @@ export default async function CardWrapper() {
     numberOfCustomers,
     totalPaidInvoices,
     totalPendingInvoices,
-  } = await fetchCardData(); // Fetch data
+  } = await fetchCardData(); 
 
   return (
     <>
