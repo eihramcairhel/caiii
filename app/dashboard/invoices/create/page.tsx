@@ -8,6 +8,8 @@ export default async function Page() {
   return (
     <main>
       <Breadcrumbs
+
+      
         breadcrumbs={[
           { label: 'Invoices', href: '/dashboard/invoices' },
           {
