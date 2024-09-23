@@ -79,7 +79,11 @@ export async function updateInvoice(id: string, prevState: State, formData: Form
 
   if (!validatedFields.success) {
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: {
+        customerId: validatedFields.error.flatten().fieldErrors.customerId || [],
+        amount: validatedFields.error.flatten().fieldErrors.amount || [],
+        status: validatedFields.error.flatten().fieldErrors.status || [],
+      },
       message: 'Missing Fields. Failed to Update Invoice.',
     };
   }
