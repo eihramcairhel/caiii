@@ -58,7 +58,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
   VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
 `;
 } catch (error) {
-  // If a database error occurs, return a more specific error.
+console.error(error);
   return {
     message: 'Database Error: Failed to Create Invoice.',
   };
@@ -79,11 +79,7 @@ export async function updateInvoice(id: string, prevState: State, formData: Form
 
   if (!validatedFields.success) {
     return {
-      errors: {
-        customerId: validatedFields.error.flatten().fieldErrors.customerId || [],
-        amount: validatedFields.error.flatten().fieldErrors.amount || [],
-        status: validatedFields.error.flatten().fieldErrors.status || [],
-      },
+      errors: validatedFields.error.flatten().fieldErrors,
       message: 'Missing Fields. Failed to Update Invoice.',
     };
   }
@@ -98,7 +94,9 @@ export async function updateInvoice(id: string, prevState: State, formData: Form
     WHERE id = ${id}
   `;
 } catch (error) {
-  return { message: 'Database Error: Failed to Update Invoice.' };
+    console.error(error);
+  return { 
+    message: 'Database Error: Failed to Update Invoice.' };
 }
 
   revalidatePath('/dashboard/invoices');
@@ -128,4 +126,3 @@ export async function authenticate(
     throw error;
   }
 }
-
